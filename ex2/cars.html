@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <table id="table" class="table"></table>
+      <form id="form">
+        Price:
+        <input type="text" id="price">
+        <button type="submit">Price less than</button>
+      </form>
+    </div>
+    <script>
+      var table = document.getElementById('table');
+      var price = document.getElementById('price');
+      var form = document.getElementById('form');
+      var cars = [
+        { id: 1, year: 1997, make: 'Ford', model: 'E350', price: 3000 },
+        { id: 2, year: 1999, make: 'Chevy', model: 'Venture', price: 4900 },
+        { id: 3, year: 2000, make: 'Chevy', model: 'Venture', price: 5000 },
+        { id: 4, year: 1996, make: 'Jeep', model: 'Grand Cherokee', price: 4799 },
+        { id: 5, year: 2005, make: 'Volvo', model: 'V70', price: 44799 }
+      ];
+      var keys = Object.keys(cars[0]);
+      function toHTML(keys, items) {
+        var top = '<tr>'+keys.map(function (key) {
+          return '<th>'+key.substr(0, 1).toUpperCase()+key.substr(1)+'</th>';
+        }).join('')+'</tr>';
+        var bottom = items.map(function (item) {
+          return '<tr>'+keys.map(function (key) {
+            return '<td>'+item[key]+'</td>';
+          }).join('')+'</tr>';
+        }).join('');
+        return top + bottom;
+      }
+      table.innerHTML = toHTML(keys, cars);
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        table.innerHTML = toHTML(keys, cars.filter(function (car) {
+          return car.price < Number(price.value);
+        }));
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <div id="a" style="width: 200px; height: 200px; float: left; margin: 10px;"></div>
+    <div id="b" style="width: 200px; height: 200px; float: left; margin: 10px;"></div>
+    <div id="c" style="width: 200px; height: 200px; float: left; clear: left; margin: 10px;"></div>
+    <button type="button" id="d">Change colors</button>
+    <script>
+      Array.prototype.forEach.call(document.getElementsByTagName('div'), function (el) {
+        el.style.backgroundColor = '#555';
+      });
+      document.getElementById('d').addEventListener('click', function (e) {
+        document.getElementById('a').style.backgroundColor = '#d30';
+        document.getElementById('b').style.backgroundColor = '#070';
+        document.getElementById('c').style.backgroundColor = '#00f';
+      });
+    </script>
+  </body>
+</html>
+

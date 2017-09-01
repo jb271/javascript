@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <ul id="list"></ul>
+    <form id="f">
+      <input id="b" type="text" value="">
+      <input id="c" type="submit" value="Add name"><br>
+      <input id="removeFirst" type="button" value="Remove first">
+      <input id="removeLast" type="button" value="Remove last">
+    </form>
+    <script>
+      document.getElementById('list').innerHTML = ['Lars', 'Peter', 'Jan', 'Ian'].map(function (name) {
+        return '<li>'+name+'</li>';
+      }).join('');
+      document.getElementById('f').addEventListener('submit', function (e) {
+        e.preventDefault();
+        document.getElementById('list').innerHTML += '<li>'+document.getElementById('b').value+'</li>';
+        document.getElementById('b').value = '';
+      });
+      document.getElementById('removeFirst').addEventListener('click', function (e) {
+        var list = document.getElementById('list');
+	list.removeChild(list.firstElementChild);
+      });
+      document.getElementById('removeLast').addEventListener('click', function (e) {
+        var list = document.getElementById('list');
+	list.removeChild(list.lastElementChild);
+      });
+    </script>
+  </body>
+</html>
+
